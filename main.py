@@ -76,6 +76,9 @@ def main():
 				pass
 				#print("state already exists")
 
+	# for i in range(len(states)):
+	# 	state_str = states[i].__str__()
+	# 	states_map[state_str] = i
 
 	alphabet = [-1, 0, 1, 2, 3]
 	input_pairs = []
@@ -93,8 +96,10 @@ def main():
 	nfa = NFA(transition_table, states, input_pairs, states_map, input_pairs_map)
 
 	for obj in allobjs:
-		in_state = State(obj.tip1_starting, obj.tip2_starting, obj.LeftTopVertUsed(), obj.LeftBotVertUsed())
-		out_state = State(obj.tip1, obj.tip2, obj.LeftTopVertUsed(), obj.LeftBotVertUsed())
+		in_state = nfa.state_map[State(obj.tip1_starting, obj.tip2_starting, obj.LeftTopVertUsed(), obj.LeftBotVertUsed()).__str__()]
+		out_state = nfa.state_map[State(obj.tip1, obj.tip2, obj.LeftTopVertUsed(), obj.LeftBotVertUsed()).__str__()]
+
+		print(in_state, out_state)
 
 		for i in range(len(nfa.states)):
 			pass
@@ -133,7 +138,7 @@ def areStatesSame(state1, state2):
 
 	# if(state1.tip1_starting[0] != state2.tip1_starting[0] or state1.tip1_starting[1] != state2.tip1_starting[1]):
 	# 	return False
-	#
+    #
 	# if(state1.tip2_starting[0] != state2.tip2_starting[0] or state2.tip1_starting[1] != state2.tip2_starting[1]):
 	# 	return False
 
